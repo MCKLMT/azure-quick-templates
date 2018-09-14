@@ -41,15 +41,16 @@
         {
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[parameters('publicIPAddressName')]",
+            "location": "[resourceGroup().location]",
             "apiVersion": "2017-06-01",
             "properties": {
                 "publicIPAllocationMethod": "Dynamic"
             }
         },
         {
-            "comments": "Création d'un Virtual Network",
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[parameters('virtualNetworkName')]",
+            "location": "[resourceGroup().location]",
             "apiVersion": "2017-06-01",
             "properties": {
                 "addressSpace": {
@@ -70,6 +71,7 @@
         {
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('networkSecurityGroupName')]",
+            "location": "[resourceGroup().location]",
             "apiVersion": "2017-06-01",
             "properties": {
                 "securityRules": [
@@ -93,6 +95,7 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('NicName')]",
+            "location": "[resourceGroup().location]",
             "apiVersion": "2016-03-30",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'))]",

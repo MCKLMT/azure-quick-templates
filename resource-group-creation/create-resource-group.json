@@ -58,16 +58,16 @@
             ],
             "properties": {
                 "mode": "Incremental",
-                "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/MCKLMT/azure-quick-templates/master/resource-group-creation/linked-template.json",
-                    "contentVersion": "1.0.0.0"
-                },
                 "parameters": {
                     "publicIPAddressName": "[parameters('publicIPAddressName')]",
                     "virtualNetworkName": "[parameters('virtualNetworkName')]",
                     "virtualNetworkAddressRange": "[parameters('virtualNetworkAddressRange')]",
                     "subnetName1": "[parameters('subnetName1')]",
                     "subnet1AddressRange": "[parameters('subnet1AddressRange')]"
+                },
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/MCKLMT/azure-quick-templates/master/resource-group-creation/linked-template.json",
+                    "contentVersion": "1.0.0.0"
                 }
             }
         }
