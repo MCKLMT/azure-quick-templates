@@ -59,11 +59,21 @@
             "properties": {
                 "mode": "Incremental",
                 "parameters": {
-                    "publicIPAddressName": "[parameters('publicIPAddressName')]",
-                    "virtualNetworkName": "[parameters('virtualNetworkName')]",
-                    "virtualNetworkAddressRange": "[parameters('virtualNetworkAddressRange')]",
-                    "subnetName1": "[parameters('subnetName1')]",
-                    "subnet1AddressRange": "[parameters('subnet1AddressRange')]"
+                    "publicIPAddressName": {
+                        "value": "[parameters('publicIPAddressName')]"
+                    },
+                    "virtualNetworkName": {
+                        "value": "[parameters('virtualNetworkName')]"
+                    },
+                    "virtualNetworkAddressRange": {
+                        "value": "[parameters('virtualNetworkAddressRange')]"
+                    },
+                    "subnetName1": {
+                        "value": "[parameters('subnetName1')]"
+                    },
+                    "subnet1AddressRange": {
+                        "value": "[parameters('subnet1AddressRange')]"
+                    }
                 },
                 "templateLink": {
                     "uri": "https://raw.githubusercontent.com/MCKLMT/azure-quick-templates/master/resource-group-creation/linked-template.json",
