@@ -77,7 +77,7 @@
                 },
                 "templateLink": {
                     "uri": "https://raw.githubusercontent.com/MCKLMT/azure-quick-templates/master/resource-group-creation/linked-template.json",
-                    "contentVersion": "1.0.0.1S"
+                    "contentVersion": "1.0.0.1"
                 }
             }
         }
