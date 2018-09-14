@@ -1,0 +1,75 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.1",
+    "parameters": {
+        "rgName": {
+            "type": "string",
+            "defaultValue": "RG-Demo"
+        },
+        "rgLocation": {
+            "type": "string",
+            "defaultValue": "westeurope"
+        },
+        "publicIPAddressName": {
+            "type": "string",
+            "defaultValue": "PubIPDemo"
+        },
+        "virtualNetworkName": {
+            "type": "string",
+            "defaultValue": "VnetDemo"
+        },
+        "virtualNetworkAddressRange": {
+            "type": "string",
+            "allowedValues": [
+                "192.168.0.0/16",
+                "10.0.0.0/16",
+                "172.16.0.0./16"
+            ],
+            "defaultValue": "10.0.0.0/16"
+        },
+        "subnetName1": {
+            "type": "string",
+            "defaultValue": "SubnetDemo"
+        },
+        "subnet1AddressRange": {
+            "type": "string",
+            "allowedValues": [
+                "192.168.0.0/24",
+                "10.0.0.0/24",
+                "172.16.0.0./24"
+            ],
+            "defaultValue": "10.0.0.0/24"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/resourceGroups",
+            "apiVersion": "2018-05-01",
+            "location": "[parameters('rgLocation')]",
+            "name": "[parameters('rgName')]"
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "linkedTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "resourceGroup": "[parameters('rgName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/resourceGroups', parameters('rgName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(deployment().properties.templateLink.uri, 'helloworld.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "publicIPAddressName": "[parameters('publicIPAddressName')]",
+                    "virtualNetworkName": "[parameters('virtualNetworkName')]",
+                    "virtualNetworkAddressRange": "[parameters('virtualNetworkAddressRange')]",
+                    "subnetName1": "[parameters('subnetName1')]",
+                    "subnet1AddressRange": "[parameters('subnet1AddressRange')]"
+                }
+            }
+        }
+    ]
+}
